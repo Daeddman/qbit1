@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Dockerfile</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6c95eb;}
+.s1 { color: #d0d0d0;}
+.s2 { color: #bdbdbd;}
+.s3 { color: #ed94c0;}
+.s4 { color: #c9a26d;}
+.ls0 { height: 1px; border-width: 0; color: #404040; background-color:#404040}
+</style>
+</head>
+<body bgcolor="#262626">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Dockerfile</font>
+</center></td></tr></table>
+<pre><span class="s0">FROM </span><span class="s1">mcr</span><span class="s2">.</span><span class="s1">microsoft</span><span class="s2">.</span><span class="s1">com</span><span class="s0">/</span><span class="s1">dotnet</span><span class="s0">/</span><span class="s1">runtime:</span><span class="s3">7.0 </span><span class="s1">AS base</span>
+<span class="s0">WORKDIR /</span><span class="s1">app</span>
+<hr class="ls0"><span class="s0">FROM </span><span class="s1">mcr</span><span class="s2">.</span><span class="s1">microsoft</span><span class="s2">.</span><span class="s1">com</span><span class="s0">/</span><span class="s1">dotnet</span><span class="s0">/</span><span class="s1">sdk:</span><span class="s3">7.0 </span><span class="s1">AS build</span>
+<span class="s0">WORKDIR /</span><span class="s1">src</span>
+<span class="s0">COPY </span><span class="s2">[</span><span class="s4">&quot;Task30/Task30.csproj&quot;</span><span class="s2">, </span><span class="s4">&quot;Task30/&quot;</span><span class="s2">]</span>
+<span class="s0">RUN </span><span class="s1">dotnet restore </span><span class="s4">&quot;Task30/Task30.csproj&quot;</span>
+<span class="s0">COPY </span><span class="s2">. .</span>
+<span class="s0">WORKDIR </span><span class="s4">&quot;/src/Task30&quot;</span>
+<span class="s0">RUN </span><span class="s1">dotnet build </span><span class="s4">&quot;Task30.csproj&quot; </span><span class="s0">-</span><span class="s1">c Release </span><span class="s0">-</span><span class="s1">o </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">build</span>
+<hr class="ls0"><span class="s0">FROM </span><span class="s1">build AS publish</span>
+<span class="s0">RUN </span><span class="s1">dotnet publish </span><span class="s4">&quot;Task30.csproj&quot; </span><span class="s0">-</span><span class="s1">c Release </span><span class="s0">-</span><span class="s1">o </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">publish </span><span class="s0">/</span><span class="s1">p:UseAppHost=false</span>
+<hr class="ls0"><span class="s0">FROM </span><span class="s1">base AS final</span>
+<span class="s0">WORKDIR /</span><span class="s1">app</span>
+<span class="s0">COPY --</span><span class="s1">from=publish </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">publish </span><span class="s2">.</span>
+<span class="s0">ENTRYPOINT </span><span class="s2">[</span><span class="s4">&quot;dotnet&quot;</span><span class="s2">, </span><span class="s4">&quot;Task30.dll&quot;</span><span class="s2">]</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Program.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6c95eb;}
+.s1 { color: #d0d0d0;}
+.s2 { color: #bdbdbd;}
+.s3 { color: #ed94c0;}
+.s4 { color: #c9a26d;}
+</style>
+</head>
+<body bgcolor="#262626">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Program.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System</span><span class="s2">;</span>
+
+<span class="s0">namespace </span><span class="s1">task30</span>
+<span class="s2">{</span>
+    <span class="s0">class </span><span class="s1">Task30</span>
+    <span class="s2">{</span>
+        <span class="s0">static void </span><span class="s1">Main</span><span class="s2">()</span>
+        <span class="s2">{</span>
+            <span class="s0">double </span><span class="s1">angleB </span><span class="s2">= </span><span class="s1">Convert</span><span class="s2">.</span><span class="s1">ToDouble</span><span class="s2">(</span><span class="s1">Console</span><span class="s2">.</span><span class="s1">ReadLine</span><span class="s2">());</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">angleB </span><span class="s2">&gt;= </span><span class="s3">0 </span><span class="s2">&amp;&amp; </span><span class="s1">angleB </span><span class="s2">&lt;= </span><span class="s3">360.0</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s0">double </span><span class="s1">hours </span><span class="s2">= </span><span class="s1">angleB </span><span class="s2">/ </span><span class="s3">360.0 </span><span class="s2">* </span><span class="s3">12</span><span class="s2">;</span>
+                <span class="s0">double </span><span class="s1">minutes </span><span class="s2">= (</span><span class="s1">hours </span><span class="s2">- </span><span class="s1">Math</span><span class="s2">.</span><span class="s1">Floor</span><span class="s2">(</span><span class="s1">hours</span><span class="s2">)) * </span><span class="s3">60.0</span><span class="s2">;</span>
+                <span class="s1">Console</span><span class="s2">.</span><span class="s1">Write</span><span class="s2">(</span><span class="s4">$&quot;{</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">Floor</span><span class="s2">(</span><span class="s1">hours</span><span class="s2">)</span><span class="s4">} {</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">Floor</span><span class="s2">(</span><span class="s1">minutes</span><span class="s2">)</span><span class="s4">}&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+            <span class="s0">else</span>
+            <span class="s2">{</span>
+                <span class="s0">return</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
